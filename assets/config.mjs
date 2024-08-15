@@ -3,7 +3,7 @@ import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvide
 import { getFirestore, collection, addDoc, getDocs,deleteDoc , doc ,updateDoc} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDLmsFsw9_zHCGkdszZbxfK_rhlz6_V49k",
+ apiKey: "AIzaSyDLmsFsw9_zHCGkdszZbxfK_rhlz6_V49k",
     authDomain: "fnecom.firebaseapp.com",
     projectId: "fnecom",
     storageBucket: "fnecom.appspot.com",
