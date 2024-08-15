@@ -2,4 +2,3 @@
 
 ## Demo
 
-https://fasih-nasirpostappp.netlify.app
