@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-import { getFirestore, collection, addDoc, getDocs,deleteDoc , doc ,updateDoc} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+import { getFirestore, collection,getDoc, addDoc, query,onSnapshot,getDocs,deleteDoc , doc ,updateDoc,orderBy} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDLmsFsw9_zHCGkdszZbxfK_rhlz6_V49k",
@@ -19,4 +19,4 @@ const db = getFirestore(app);
 
 auth.languageCode = 'eng';
 
-export { db, auth, app, provider, collection, deleteDoc ,addDoc, getDocs, doc, updateDoc,createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut };
+export { db, orderBy,query,auth, getAuth,app, provider, collection, onSnapshot,deleteDoc ,addDoc, getDoc,getDocs, doc, updateDoc,createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut };
