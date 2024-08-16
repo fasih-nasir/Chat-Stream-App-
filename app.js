@@ -1,5 +1,7 @@
-// import { auth, getDocs,doc,signOut,collection,addDoc,db ,signInWithEmailAndPassword,createUserWithEmailAndPassword,  provider, signInWithPopup,  GoogleAuthProvider,onAuthStateChanged} from "./assets/config.mjs";
 import { auth, getDocs, updateDoc,doc, deleteDoc ,signOut, collection, addDoc, db, signInWithEmailAndPassword, createUserWithEmailAndPassword, provider, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "./assets/config.mjs";
+
+
+
 function fn(){
 var inp=document.querySelectorAll("input")
 inp.forEach(element => {
@@ -36,7 +38,7 @@ create1?.addEventListener("click",async ()=>{
 // CREATE ACOUNT VAR
 var email0=document.getElementById("email0").value;
 var password0=document.getElementById("pass0").value;
-var name0=document.getElementById("name").value;
+var name0=document.getElementById("name0").value;
 var dob0=document.getElementById("dob").value;
 var gender0=document.getElementById("gender").value;
 var age0=document.getElementById("age").value;
@@ -127,6 +129,7 @@ signInWithPopup(auth, provider)
 
 // LOGIN IN DASBOARD
 
+
 var login1=document.getElementById("login1");
 login1?.addEventListener("click",()=>{
 
@@ -134,9 +137,13 @@ login1?.addEventListener("click",()=>{
     var password=document.getElementById("pass").value;
 
     signInWithEmailAndPassword(auth, email, password)
+    
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
+      
+      console.log(user);
+      
       location.href = "files/dashboard.html";
       // ...
     })
@@ -167,19 +174,22 @@ logout?.addEventListener("click", () => {
 
 // FIRESTORE
 
-document.getElementById("area").innerHTML = "";
+// document.getElementById("area").innerHTML = "";
 var main=document.getElementById("main");
 
+onAuthStateChanged(auth, (user)=>{
+if(user){
+  // console.log(user.email.split("@")[0]);
+}
 var postbtn=document.getElementById("postbtn");
 postbtn?.addEventListener("click",async()=>{
     var area=document.getElementById("area").value;
 // console.log(area);
 var date=new Date()
-onAuthStateChanged(auth, (user)=>{
 
 try {
     const docRef =  addDoc(collection(db, "text"), {
-   name:user.displayName,
+   name123:user.email.split("@")[0],
      msg:area,
     day:date.toString().split(" ").slice(0,5)
 
@@ -207,18 +217,20 @@ inp.forEach(element => {
 });
 
 })
-
 var showvr=await getDocs(collection(db, "text"))
-onAuthStateChanged(auth, (user)=>{
-    // var nam=user.displayName;
-    showvr.forEach((element) => {
-        // console.log(element.data().day.slice(1,element.data().day.length));
-        // console.log(element.id);
-    
+// console.log(user);
+
+// var nam=user.displayName;
+
+showvr.forEach((element) => {
+  
+  // console.log(element.name);
+  onAuthStateChanged(auth, (user)=>{
+
     main.innerHTML+=`
    <div class="col-12 box2 my-2">
     <div class="d-flex flex-row align-items-center justify-content-between col-12">
-      <h5><b>${element.data().name}</b> <span style="font-size: 12px;"> (${element.data().day.slice(1)}) </span></h5>
+      <h5><b>${element.data().name123}</b> <span style="font-size: 12px;"> (${element.data().day.slice(1)}) </span></h5>
       <div>
         <button data-id="${element.id}" class="ed">edit</button>
         <button data-id="${element.id}" class="de">delete</button>
@@ -227,38 +239,39 @@ onAuthStateChanged(auth, (user)=>{
     <span>${element.data().msg}</span>
   </div>
     `;
-})
-
-
-//  console.log(element.id);
-
-var dlbtb=document.querySelectorAll(".de");
-var edbtb=document.querySelectorAll(".ed");
-edbtb.forEach(element => {
-    element.addEventListener("click",(e)=>{
+    
+    
+    //  console.log(element.id);
+    
+    var dlbtb=document.querySelectorAll(".de");
+    var edbtb=document.querySelectorAll(".ed");
+    edbtb.forEach(element => {
+      element.addEventListener("click",(e)=>{
         // console.log(element.parentElement.parentElement.nextElementSibling.innerHTML);
         const washingtonRef = doc(db, "text", element.getAttribute("data-id"));
         var newmsg=prompt("Enter New Msg",element.parentElement.parentElement.nextElementSibling.innerHTML)
-      updateDoc(washingtonRef, {
-        name:user.displayName,
-        msg:newmsg,
-    //    day:date.toString().split(" ").slice(0,5)
-          });
-       
-    })
-    
-});
-// console.log(dlbtb);
-dlbtb.forEach(element => {
-    element.addEventListener("click",(e)=>{
+        updateDoc(washingtonRef, {
+          name:user.displayName,
+          msg:newmsg,
+          //    day:date.toString().split(" ").slice(0,5)
+        });
+        
+      })
+      
+    });
+    // console.log(dlbtb);
+    dlbtb.forEach(element => {
+      element.addEventListener("click",(e)=>{
         // console.log(element.getAttribute("data-id"));
-    
-      deleteDoc(doc(db, "text",element.getAttribute("data-id")));
+        
+        deleteDoc(doc(db, "text",element.getAttribute("data-id")));
         element.parentElement.parentElement.parentElement.remove()
         // console.log( element.parentElement.parentElement.parentElement.remove());
         
-});
+      });
+      
+    })
+  })
+  })
 
-})
-})
 
