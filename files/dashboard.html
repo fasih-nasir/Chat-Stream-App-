@@ -52,7 +52,9 @@
           <button id="logout" class="col-10 " >Logout</button>
         </div>
         <p id="lo" class="text-center my-3 loader col-3  z-3 "></p>
+        
         <div class="d-flex flex-column col-7 border-3 box1" id="main">
+            <h4 class="text-start col-12 ">Your Feed </h4>
             <!-- <div class="col-12 box2">
                 <div class="d-flex flex-row align-items-center justify-content-between col-12">
                 <div>
@@ -79,7 +81,7 @@
         What's On Your Mind,
 </textarea>
 <button class="col-11 position-absolute po " id="postbtn">Post Now</button>
-<div id="msgjok" class="mfg col-10 text-center">Message Add In Feed</div>
+<div id="msgjok" class="mfg col-10 text-center">Message Add In Feed <BR>Refresh A Page For Msg</div>
 </div>
 </div>
     </div>
@@ -110,7 +112,7 @@ main1.innerHTML=`
 <h5>Natinaltiy : ${element.data().country}</h5>
 <h5>Profession : ${element.data().profession}</h5>
 `
-            console.log(element.data());
+            // console.log(element.data());
         }
         
     });
