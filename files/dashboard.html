@@ -63,27 +63,17 @@
     <!-- <script src="../index.html"></script> -->
      <script type="module">
         import { auth, signOut ,signInWithEmailAndPassword,createUserWithEmailAndPassword,  provider, signInWithPopup,  GoogleAuthProvider,onAuthStateChanged} from "../assets/config.mjs";
+ 
         onAuthStateChanged(auth, (user) => {
-            document.getElementById("nameofuser").innerHTML=`
-    ${user.displayName}  <i class="fa-solid fa-user"></i>
-
-    `
-
-    
-    // console.log(user);
-    if (!user) {
-
-
-    location.href ="../index.html";
-   
-} else {
-    // console.log("User UID:", user.uid);
-      // User is signed out
-      // ...
-    //   console.log("fn");
-    //   location.href ="dashboard.html";
-    }
-  });
+            document.getElementById("nameofuser").innerHTML = `${user.email.split("@")[0]}  <i class="fa-solid fa-user"></i>`;
+            if (user) {
+                // const userNameOrEmail = user.email.split("@")[0];
+                // console.log(userNameOrEmail);
+                
+            } else {
+                location.href = "../index.html";
+            }
+        });
      </script>
     <script src="../app.js" type="module"></script>
        <!-- BOOTSTRAP -->
