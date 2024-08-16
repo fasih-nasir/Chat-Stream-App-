@@ -1,4 +1,4 @@
-import { auth, getDocs, updateDoc,doc, deleteDoc ,signOut, collection, addDoc, db, signInWithEmailAndPassword, createUserWithEmailAndPassword, provider, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "./assets/config.mjs";
+import {auth, getDocs, updateDoc,doc, deleteDoc ,signOut, collection, addDoc, db, signInWithEmailAndPassword, createUserWithEmailAndPassword, provider, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "./assets/config.mjs";
 
 
 
@@ -49,6 +49,7 @@ var profession0=document.getElementById("profession").value;
 
 
 try {
+  const date = new Date();
     const docRef = await addDoc(collection(db, "users"), {
       name: name0,
       email:email0,
@@ -174,7 +175,7 @@ logout?.addEventListener("click", () => {
 
 // FIRESTORE
 
-// document.getElementById("area").innerHTML = "";
+document.getElementById("area").innerHTML = "";
 var main=document.getElementById("main");
 
 onAuthStateChanged(auth, (user)=>{
@@ -194,7 +195,17 @@ try {
     day:date.toString().split(" ").slice(0,5)
 
 });
-alert("text add in feed")
+document.getElementById("msgjok").style.display="block";
+setTimeout(() => {
+  document.getElementById("msgjok").style.display="none";
+}, 1000);
+// Swal.fire({
+//   position: "top-end",
+//   icon: "success",
+//   title: "Your work has been saved",
+//   showConfirmButton: false,
+//   timer: 1500
+// });
 // location.reload()
     // console.log("Document written with ID: ", docRef.id);
   } catch (e) {
@@ -273,5 +284,10 @@ showvr.forEach((element) => {
     })
   })
   })
+
+
+  
+
+
 
 
